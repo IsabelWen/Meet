@@ -6,6 +6,9 @@ A serverless, progressive web application (PWA) with React using a test-driven d
 ## The API the project uses
 The application uses the Google Calendar API to fetch upcoming events.
 
+## Serverless Functions
+This app uses serverless functions for authorizing access to public calendar events from the Google Calendar API. The user enters a key and secret to ask for an access token from the authorization server. The server informs the user with a consent screen. When the user agrees by logging into their Google account and giving consent, the app can fetch and show the calendar events.
+
 ## Key Features:
 
 ### Filter Events by City.
