@@ -11,6 +11,7 @@ const redirect_uris = [
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
+  CALENDAR_ID,
   redirect_uris[0]
 );
 
@@ -74,11 +75,11 @@ module.exports.getAccessToken = async (event) => {
 };
 
 module.exports.getCalendarEvents = async (event) => {
-  // Access token
+  // get access token
   const access_token = decodeURIComponent(`${event.pathParameters.code}`);
   oAuth2Client.setCredentials({ access_token });
 
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     calendar.events.list(
       {
         calendarId: CALENDAR_ID,
@@ -89,23 +90,22 @@ module.exports.getCalendarEvents = async (event) => {
       },
       (error, response) => {
         if (error) {
-          reject(error);
-        } else {
-          resolve(response);
-        }
+          return reject(error);
+        } 
+        return resolve(response);
       }
-    )
-    .then((results) => {
-      // Respond with OAuth token
-      return {
-        statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': true,
-        },
-        body: JSON.stringify({ events: results.data.items })
-      };
-    })
+    );
+  })
+  .then((results) => {
+    // Respond with OAuth token
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+      body: JSON.stringify({ events: results.data.items }),
+    };
   })
   .catch((error) => {
     // Handle error
