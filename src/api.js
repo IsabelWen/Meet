@@ -23,22 +23,6 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
-// removeQuery function
-const removeQuery = () => {
-  let newurl;
-  if (window.history.pushState && window.location.pathname) {
-    newurl = 
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
-
 // getToken  function
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
@@ -67,6 +51,22 @@ export const getEvents = async () => {
     if (result) {
       return result.events;
     } else return null;
+  }
+};
+
+// removeQuery function
+const removeQuery = () => {
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl = 
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
   }
 };
 
