@@ -43,9 +43,9 @@ SCENARIO 2: User slicks to show event details
 * **Then** the app should display the details of the event.
 
 SCENARIO 3: User clicks to hide event details 
-**Given** there is an event with displayed details;
-**When** the user clicks on the event to hide details again;
-**Then** the app should hide the details of the event.
+* **Given** there is an event with displayed details;
+* **When** the user clicks on the event to hide details again;
+* **Then** the app should hide the details of the event.
 
 ### Specify Number of Events.
 As a user, I should be able to specify the number of events displayed, so that I can decide how many I want to see at once.
