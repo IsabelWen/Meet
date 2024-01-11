@@ -38,7 +38,7 @@ defineFeature(feature, test => {
             AppComponent = render(<App />);
             const AppDOM = AppComponent.container.firstChild;
             const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-            const numberOfEventsInput = within(NumberOfEventsDOM).queryByRole('textbox');
+            const numberOfEventsInput = within(NumberOfEventsDOM).queryByRole('spinbutton');
             await user.type(numberOfEventsInput, '{backspace}{backspace}10');
         });
 
