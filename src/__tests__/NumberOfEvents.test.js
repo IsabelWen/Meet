@@ -6,7 +6,7 @@ import App from '../App';
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}} />); //no setNumb ...?
+        NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}} />); //no setNumb ...?
     });
 
     test('renders number of events text input', () => {
